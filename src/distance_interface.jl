@@ -28,6 +28,8 @@ function DTWDistance(
     DTWDistance{M,D}(m,d)
 end
 
+(d::DTWDistance)(x,y) = Distances.evaluate(d, x, y)
+
 Distances.evaluate(d::DTWDistance{ClassicDTW}, x, y) = dtw(x,y,d.dist)[1]
 Distances.evaluate(d::DTWDistance{FastDTW}, x, y) = fastdtw(x,y,d.method.radius,d.dist)[1]
 
